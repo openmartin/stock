@@ -9,7 +9,7 @@ from stock_datagather.day_increment import get_data
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "stock_analysis.settings")
 
 if __name__ == '__main__':
-    trandt = date(2014, 4, 2)
+    trandt = date(2014, 4, 3)
     end_date = trandt
     end_date_str = end_date.strftime('%Y%m%d')
     start_date = end_date
