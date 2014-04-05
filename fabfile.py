@@ -10,7 +10,8 @@ def test():
     local("./manage.py test my_app")
 
 def commit():
-    local("git add -p && git commit")
+    with settings(warn_only=True):
+        local("git add -p && git commit")
 
 def push():
     local("git push origin")
