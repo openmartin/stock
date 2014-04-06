@@ -155,3 +155,6 @@ LOGGING = {
         },
     }
 }
+
+# Add by Author
+DATE_FORMAT = 'Y-m-d'

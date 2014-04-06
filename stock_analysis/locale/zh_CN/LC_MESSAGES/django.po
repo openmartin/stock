@@ -1,0 +1,109 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: pengzl <pengzili@yeah.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+
+# STOCK ANALYSIS.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# PENGZILI <EMAIL@ADDRESS>, 2014.
+#
+msgid "corp_code"
+msgstr "证券代码"
+
+msgid "corp_name"
+msgstr "公司名"
+
+msgid "close_price"
+msgstr "收盘价"
+
+msgid "high_price"
+msgstr "最高价"
+
+msgid "low_price"
+msgstr "最低价"
+
+msgid "open_price"
+msgstr "开盘价"
+
+msgid "pre_close_price"
+msgstr "前收盘价"
+
+msgid "change_amount"
+msgstr "涨跌额"
+
+msgid "change_rate"
+msgstr "涨跌幅"
+
+msgid "turnover_rate"
+msgstr "换手率"
+
+msgid "turnover_amount"
+msgstr "成交量"
+
+msgid "turnover_money"
+msgstr "成交额"
+
+msgid "total_value"
+msgstr "总市值"
+
+msgid "market_value"
+msgstr "流通市值"
+
+msgid "trandt"
+msgstr "交易日期"
+
+msgid "inflow"
+msgstr "资金流入"
+
+msgid "outflow"
+msgstr "资金流出"
+
+msgid "net_inflow"
+msgstr "净流入"
+
+msgid "main_inflow"
+msgstr "主力流入"
+
+msgid "main_outflow"
+msgstr "主力流出"
+
+msgid "main_net_inflow"
+msgstr "主力净流入"
+
+msgid "one_rate"
+msgstr "一日量比"
+
+msgid "two_rate"
+msgstr "两日量比"
+
+msgid "threee_rate"
+msgstr "三日量比"
+
+msgid "four_rate"
+msgstr "四日量比"
+
+msgid "five_rate"
+msgstr "五日量比"
+
+msgid "ten_rate"
+msgstr "十日量比"
+
+msgid "StockCode"
+msgstr "证券代码"
+
+msgid "StockTradeDay"
+msgstr "按日交易情况"
+
+msgid "StockCashFlowDay"
+msgstr "按日资金流入"
+
+msgid "StockTurnoverAnalysis"
+msgstr "换手率分析"

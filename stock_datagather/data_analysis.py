@@ -6,7 +6,7 @@ from stock_analysis.models import StockTradeDay, StockCode, StockTurnoverAnalysi
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "stock_analysis.settings")
 
 ANA_GO_STEP = 5
-DAYS_SIZE_LIST = [1,2,3,4,5]
+DAYS_SIZE_LIST = [1,2,3,4,5,10]
 
 def corp_analysis(trandt, corp_code, corp_name):
     stock_turnover_ana = StockTurnoverAnalysis()
@@ -36,6 +36,11 @@ def corp_analysis(trandt, corp_code, corp_name):
                 five_rate = day_analysis(trandt, corp_code, days_size)
             except IndexError:
                 five_rate = 0.0
+        elif days_size == 10:
+            try:
+                ten_rate = day_analysis(trandt, corp_code, days_size)
+            except IndexError:
+                ten_rate = 0.0
     
     if one_rate == None:
         pass
@@ -48,10 +53,11 @@ def corp_analysis(trandt, corp_code, corp_name):
         stock_turnover_ana.threee_rate = three_rate
         stock_turnover_ana.four_rate = four_rate
         stock_turnover_ana.five_rate = five_rate
+        stock_turnover_ana.ten_rate = ten_rate
         stock_turnover_ana.save()
 
 def day_analysis(trandt, corp_code, days_size):
-    his_trade = StockTradeDay.objects.filter(corp_code=corp_code).order_by('-trandt')[0:30]
+    his_trade = StockTradeDay.objects.filter(corp_code=corp_code).order_by('-trandt')[0:60]
     
     if trandt == his_trade[0].trandt:
         pass
