@@ -57,7 +57,7 @@ def corp_analysis(trandt, corp_code, corp_name):
         stock_turnover_ana.save()
 
 def day_analysis(trandt, corp_code, days_size):
-    his_trade = StockTradeDay.objects.filter(corp_code=corp_code).order_by('-trandt')[0:60]
+    his_trade = StockTradeDay.objects.filter(corp_code=corp_code).filter(trandt__lte=trandt).order_by('-trandt')[0:60]
     
     if trandt == his_trade[0].trandt:
         pass
@@ -83,4 +83,12 @@ def day_analysis(trandt, corp_code, days_size):
 if __name__ == '__main__':
     #1,2,3,4,5 天的成交额是前几个单位时间的多少倍
     trandt = date(2014, 3, 28)
-    corp_analysis(trandt, '600000', '浦发银行')
+    corp_analysis(trandt, '002603', '以岭药业')
+    trandt = date(2014, 3, 31)
+    corp_analysis(trandt, '002603', '以岭药业')
+    trandt = date(2014, 4, 1)
+    corp_analysis(trandt, '002603', '以岭药业')
+    trandt = date(2014, 4, 2)
+    corp_analysis(trandt, '002603', '以岭药业')
+    trandt = date(2014, 4, 3)
+    corp_analysis(trandt, '002603', '以岭药业')
