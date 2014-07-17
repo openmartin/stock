@@ -404,9 +404,9 @@ def PostSaveTradeRecord(sender, **kwargs):#形成持仓记录和计算股票收�
         sh.stamp_tax = the_instance.stamp_tax
         sh.transfer_fee = the_instance.transfer_fee
         sh.total_fee_tax = the_instance.total_fee_tax
-        sh.total_balance = the_instance.total_balance
-        
+        sh.total_balance = 0 - the_instance.trade_price * the_instance.trade_amount
         sh.save()
+        
     elif the_instance.trade_type == 'H': #红股入账, 采用摊平成本方式
         total_amount = StockHolder.objects.filter(corp_code=the_instance.corp_code).\
              filter(trandt__lte=the_instance.trandt).\
@@ -421,6 +421,7 @@ def PostSaveTradeRecord(sender, **kwargs):#形成持仓记录和计算股票收�
             sh.hold_amount = sh.hold_amount + bonus_amount_a
             sh.hold_price = sh.hold_value / sh.hold_amount
             sh.save()
+            
     elif the_instance.trade_type == 'D': #股息红利税补
         sp = StockProfit()
         sp.profit = the_instance.total_balance
