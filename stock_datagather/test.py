@@ -2,6 +2,7 @@
 import os
 import sys
 from stock_analysis.models import StockTradeDay, StockCode
+import xlrd
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "stock_analysis.settings")
 
@@ -64,9 +65,14 @@ my_stock = [
 ('000423','东阿阿胶'),
 ('600743','华远地产')]
 
+# if __name__ == '__main__':
+#     for stock in my_stock:
+#         stock_code = StockCode()
+#         stock_code.corp_code=stock[0]
+#         stock_code.corp_name=stock[1]
+#         stock_code.save()
+        
 if __name__ == '__main__':
-    for stock in my_stock:
-        stock_code = StockCode()
-        stock_code.corp_code=stock[0]
-        stock_code.corp_name=stock[1]
-        stock_code.save()
+    wb = xlrd.open_workbook(u'temp//融资融券交易明细.xls')
+    for s in wb.sheets():
+        print 'Sheet:',s.name

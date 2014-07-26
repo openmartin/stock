@@ -107,7 +107,8 @@ class StockTurnoverAnalysis(models.Model):
 
     def __unicode__(self):
         return datetime.datetime.strftime(self.trandt, '%Y%m%d') + " " +self.corp_name
-    
+
+#融资融券信息
 class StockMarginTrading(models.Model):
     trandt = models.DateField(_('trandt'))
     corp_code = models.CharField(_('corp_code'), max_length=20)
@@ -120,6 +121,34 @@ class StockMarginTrading(models.Model):
     rzmre  =  models.FloatField('融资买入额')     #融资买入额
     rzye = models.FloatField('融资余额')          #融资余额
     rzrqjyzl = models.FloatField('融资融券余额')  #融资融券余额
+
+#转融通业务
+#转融券业务期限
+CSF_MARGIN_TIME = (
+    ('003', '3天'),
+    ('007', '7天'),
+    ('014', '14天'),
+    ('028', '28天'),
+    ('091', '91天'),
+    ('182', '182天'),
+)
+
+class StockCsfMarginTrading(models.Model):
+    trandt = models.DateField(_('trandt'))
+    corp_code = models.CharField(_('corp_code'), max_length=20)
+    corp_name = models.CharField(_('corp_name'), max_length=200)
+    csf_margin_type = models.CharField('转融券期限', max_length=3, choices=CSF_MARGIN_TIME)
+    rlsl = models.FloatField('转融券融入数量')     #转融券融入数量(万股)
+    rcsl = models.FloatField('转融券融出数量')     #转融券融出数量(万股)
+
+class StockCsfMarginTotal(models.Model):
+    trandt = models.DateField(_('trandt'))
+    corp_code = models.CharField(_('corp_code'), max_length=20)
+    corp_name = models.CharField(_('corp_name'), max_length=200)
+    qcsl = models.FloatField('期初余量')     #期初余量(万股)
+    rcsl = models.FloatField('转融券融出数量')     #转融券融出数量(万股)
+    qmsl = models.FloatField('期末余量')     #期末余量(万股)
+    qmye = models.FloatField('期末余额')     #期末余额(万元)
     
 
 #股票持仓
@@ -177,7 +206,8 @@ class StockProfit(models.Model):
     holde_days = models.IntegerField('持有天数', null=True, blank=True)
     remarks = models.CharField('备注', max_length=200, null=True, blank=True)
     
-def PreSaveTradeRecord(sender, the_instance, **kwargs): #计算佣金，印花税，过户费
+def PreSaveTradeRecord(sender, **kwargs): #计算佣金，印花税，过户费
+    the_instance = kwargs['instance']
     corp_code = the_instance.corp_code
     trade_type = the_instance.trade_type
     trade_value = the_instance.trade_amount * the_instance.trade_price
