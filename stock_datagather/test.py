@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+from  xml.dom  import  minidom
 from stock_analysis.models import StockTradeDay, StockCode
 import xlrd
 
@@ -73,6 +74,36 @@ my_stock = [
 #         stock_code.save()
         
 if __name__ == '__main__':
-    wb = xlrd.open_workbook(u'temp//融资融券交易明细.xls')
+    wb = xlrd.open_workbook(u'temp//margin20140717.xls')
     for s in wb.sheets():
         print 'Sheet:',s.name
+    csf_margin_detail_sheet = wb.sheet_by_name(u'转融券交易明细')
+    for row in range(0, csf_margin_detail_sheet.nrows):
+        print csf_margin_detail_sheet.cell(row, 0).value
+        print csf_margin_detail_sheet.cell(row, 1).value
+        print csf_margin_detail_sheet.cell(row, 2).value
+        print csf_margin_detail_sheet.cell(row, 3).value
+        print csf_margin_detail_sheet.cell(row, 4).value
+        print csf_margin_detail_sheet.cell(row, 5).value
+#     f = open(u'temp//融资融券交易明细.xls')
+#     f_head = f.readline()
+#     xml_str = f.readline()
+#     print xml_str
+#     f_tail = """<table id='tbl-data-bottom-line'  height='2' cellSpacing='0' cellPadding='0'  width="100%" bgColor='#b8d9ec' border='0'><tr><td></td></tr></table>"""
+#     nPos = xml_str.index(f_tail)
+#     xml_str = xml_str[0:nPos]
+#     print xml_str.decode('GBK')
+#     doc = minidom.parseString(xml_str.decode('GBK'))
+#     
+#     f.close()
+#     tr_l = doc.documentElement.getElementsByTagName('tr')
+#     for tr in tr_l:
+#         print tr.getElementsByTagName('td')[0].firstChild.nodeValue
+#         print tr.getElementsByTagName('td')[1].firstChild.nodeValue
+#         print tr.getElementsByTagName('td')[2].firstChild.nodeValue
+#         print tr.getElementsByTagName('td')[3].firstChild.nodeValue
+#         print tr.getElementsByTagName('td')[4].firstChild.nodeValue
+#         print tr.getElementsByTagName('td')[5].firstChild.nodeValue
+#         print tr.getElementsByTagName('td')[6].firstChild.nodeValue
+#         print tr.getElementsByTagName('td')[7].firstChild.nodeValue
+#         print

@@ -115,12 +115,12 @@ class StockMarginTrading(models.Model):
     corp_name = models.CharField(_('corp_name'), max_length=200)
     rqyl = models.FloatField('融券余量')          #融券余量
     rqmcl = models.FloatField('融券卖出量')       #融券卖出量
-    rqchl = models.FloatField('融券偿还额')       #融券偿还额
-    rqylje  = models.FloatField('融券余量金额')   #融券余量金额
-    rzche  =  models.FloatField('融资偿还额')     #融资偿还额
+    rqchl = models.FloatField('融券偿还额', null=True, blank=True)       #融券偿还额
+    rqylje  = models.FloatField('融券余量金额', null=True, blank=True)   #融券余量金额
+    rzche  =  models.FloatField('融资偿还额', null=True, blank=True)     #融资偿还额
     rzmre  =  models.FloatField('融资买入额')     #融资买入额
     rzye = models.FloatField('融资余额')          #融资余额
-    rzrqjyzl = models.FloatField('融资融券余额')  #融资融券余额
+    rzrqjyzl = models.FloatField('融资融券余额', null=True, blank=True)  #融资融券余额
 
 #转融通业务
 #转融券业务期限
