@@ -1,0 +1,9 @@
+#启动
+sudo /opt/lampp/manager-linux.run
+
+#mysql
+sudo mkdir mysqld
+sudo ln -s /opt/lampp/var/mysql/mysql.sock /var/run/mysqld/mysqld.sock
+
+#git 命令
+git pull
