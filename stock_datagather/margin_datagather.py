@@ -5,7 +5,7 @@ from string import Template
 import csv
 from  xml.dom  import  minidom
 import requests
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from stock_analysis.models import StockTradeDay, StockMarginTrading, StockCsfMarginTrading, StockCsfMarginTotal
 import xlrd
 
@@ -220,6 +220,28 @@ def clean_num(num):
         return num
     else:
         return num
+    
+
+def after_clean_data(trandt):
+    #sse 补全 融券余量金额 融资融券余额
+    #融券余量金额 = 融券余量 * 收盘价
+    #融资融券余额 = 融资余额 + 融券余量金额
+    yestoday = trandt - timedelta(days=1)
+    today_margin_l = StockMarginTrading.objects.filter(trandt=trandt).\
+        filter(corp_code__startswith='60')
+    yestoday_margin_l = StockMarginTrading.objects.filter(trandt=trandt).\
+        filter(corp_code__startswith='60')
+    for a_margin in today_margin_l:
+        for b_margin in yestoday_margin_l:
+            pass
+    
+    #szse 补全 融券偿还量 融资偿还额
+    #融券卖出量 - 融券偿还量 = 今日融券余量 - 昨日融券余量
+    #融券偿还量 = 昨日融券余量 - 今日融券余量 + 融券卖出量
+    #融资买入额 - 融资偿还额 = 今日融资余额 - 昨日融资余额
+    #融资偿还额 = 昨日融资余额 - 今日融资余额 + 融资买入额
+    
+    
 
 if __name__ == '__main__':
     trandt = date(2014, 6, 13)
