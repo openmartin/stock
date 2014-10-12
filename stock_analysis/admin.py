@@ -43,13 +43,13 @@ class StockTradeRecordAdmin(admin.ModelAdmin):
     list_filter = ('trandt',)
     search_fields = ['corp_code', 'corp_name']
     fields = ('trandt','corp_code','corp_name','trade_type','trade_amount',
-                    'trade_price', 'sell_holder')
+                    'trade_price')
 
 class StockHolderAdmin(admin.ModelAdmin):
     list_per_page = 100
     search_fields = ['corp_code', 'corp_name']
     fields = ('trandt','corp_code','corp_name','hold_amount','hold_price',
-                    'trade_value', 'balance_sell_price')
+                    'balance_sell_price')
 
 class StockProfitAdmin(admin.ModelAdmin):
     pass
